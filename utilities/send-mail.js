@@ -117,7 +117,7 @@ ${text}
 评论内容：
 ${$(text.replace(/  <img.*?src="(.*?)".*?>/g, "\n[图片]$1\n").replace(/<br>/g, "\n")).text().replace(/\n+/g, "\n").replace(/\n+$/g, "")}
 链接：${url + '#' + comment.get('objectId')}`
-    axios.get(`https://qmsg.zendee.cn:443/send/${process.env.QMSG_KEY}.html?msg=${encodeURIComponent(scContent)}`)
+    axios.get(`https://qmsg.zendee.cn/send/${process.env.QMSG_KEY}.html?msg=${encodeURIComponent(scContent)}`)
       .then(function (response) {
         if (response.status === 200 && response.data.success === true) {
           comment.set('isNotified', true)
