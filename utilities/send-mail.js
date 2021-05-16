@@ -145,12 +145,12 @@ ${$(text.replace(/<img.*?src="(.*?)".*?>/g, "\n图片: $1\n").replace(/<br>/g, "
         })
     }
     */
+    const content = text.replace(/<img.*?src="(.*?)".*?>/g, "\n[图片]$1\n").replace(/<br>/g, "\n").replace(/\n+/g, "\n").replace(/\n+$/g, "").replace(/(<p>)|(<\/p>)/g, '')
     const scContent = `@face=119@您的 ${process.env.SITE_NAME} 上有新评论了！
-
 @face=183@${name} 发表评论：
 
 @face=77@@face=77@@face=77@@face=77@@face=77@
-${$(text.replace(/<img.*?src="(.*?)".*?>/g, "\n[图片]$1\n").replace(/<br>/g, "\n")).text().replace(/\n+/g, "\n").replace(/\n+$/g, "")}
+${content}
 @face=76@@face=76@@face=76@@face=76@@face=76@
 
 @face=169@${url + '#' + comment.get('objectId')}`

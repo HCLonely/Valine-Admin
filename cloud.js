@@ -65,7 +65,12 @@ AV.Cloud.define('resend_mails', function (req) {
 })
 
 AV.Cloud.define('self_wake', function (req) {
-  axios.get(process.env.ADMIN_URL+'/start')
+  let adminURL = process.env.ADMIN_URL
+  let location = "/start"
+  if (adminURL[adminURL.length - 1] === "/") {
+    location = "start"
+  }
+  axios.get(adminURL + location)
     .then(function (response) {
       console.log('自唤醒任务执行成功，响应状态码为:', response && response.status)
     })
